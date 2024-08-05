@@ -1,6 +1,9 @@
 package com.korea.missionCRUD.post;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -9,6 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class PostService {
+
     private final PostRepository postRepository;
 
     public Post postCreate(String title, String content){
@@ -35,9 +39,8 @@ public class PostService {
         postRepository.delete (post);
     }
 
-    public List<Post> postListGet(){
-        List<Post> postList = postRepository.findAll ();
-        return postList;
+    public Page<Post> postListGet(Pageable pageable) {
+        return postRepository.findAll(pageable);
     }
 
     public Post postGet(Long postId){

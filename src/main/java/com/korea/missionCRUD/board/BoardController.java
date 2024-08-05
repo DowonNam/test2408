@@ -18,6 +18,7 @@ public class BoardController {
 
     @PostMapping
     public ResponseEntity<?> boardCreate(@RequestBody Map<String, String> request){
+
         String name = request.get("name");
         Board board = boardService.create(name);
         return ResponseEntity.status(HttpStatus.OK).body(board);

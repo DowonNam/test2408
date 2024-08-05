@@ -16,4 +16,9 @@ public class BoardService {
         board.setCreateDate (LocalDateTime.now ());
        return boardRepository.save (board);
     }
+
+    public void delete(Long id){
+        Board board = boardRepository.findById (id).get ();
+        boardRepository.delete (board);
+    }
 }
